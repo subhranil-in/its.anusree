@@ -36,34 +36,6 @@ function gift(){
 app.innerHTML=`<h2>One last surprise... 🎁</h2><p>Tap the gift.</p><div id="g" class="gift">
 <div class="bowL"></div><div class="bowR"></div><div class="lid"></div><div class="box"></div><div class="rv"></div><div class="rh"></div>
 <div class="letter"><h3>💌 Surprise!</h3><p><b>Your gift will be handed over to you by your boyfriend on <span style="color:#e91e63">August 1, 2026 at 7:00 PM ❤️</span></b></p></div></div>`;
-g.onclick=()=>{g.classList.add('open');setTimeout(showSummary,2300);for(let i=0;i<120;i++){let e=document.createElement('div');e.textContent=Math.random()>.5?'❤️':'🎉';e.style.position='fixed';e.style.left='50vw';e.style.top='60vh';e.style.transition='2s';document.body.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(${(Math.random()-.5)*600}px,${-Math.random()*500}px)`;e.style.opacity=0});setTimeout(()=>e.remove(),2100);}}
+g.onclick=()=>{g.classList.add('open');for(let i=0;i<120;i++){let e=document.createElement('div');e.textContent=Math.random()>.5?'❤️':'🎉';e.style.position='fixed';e.style.left='50vw';e.style.top='60vh';e.style.transition='2s';document.body.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(${(Math.random()-.5)*600}px,${-Math.random()*500}px)`;e.style.opacity=0});setTimeout(()=>e.remove(),2100);}}
 }
-
-function showSummary(){
- let html="<h2>💖 Your Responses</h2><div style='text-align:left;max-width:700px;margin:20px auto'>";
- let share="My Responses%0A%0A";
- qs.forEach((q,i)=>{
-   let a=ans[i];
-   if(q.type==='choice' && a!==undefined) a=q.o[a];
-   if(a===undefined||a==='') a='(No answer)';
-   html+=`<p><b>${i+1}. ${q.t}</b><br>${a}</p>`;
-   share+=`${i+1}. ${q.t}%0A${encodeURIComponent(String(a))}%0A%0A`;
- });
- html+=`</div><button onclick="window.open('https://wa.me/?text=${share}','_blank')">📤 Share on WhatsApp</button>
- <button onclick="downloadResponses()" style="margin-left:10px">📥 Download</button>`;
- app.innerHTML=html;
-}
-function downloadResponses(){
- let txt="My Responses\n\n";
- qs.forEach((q,i)=>{
-  let a=ans[i];
-  if(q.type==='choice' && a!==undefined) a=q.o[a];
-  txt+=`${i+1}. ${q.t}\n${a}\n\n`;
- });
- const b=new Blob([txt],{type:'text/plain'});
- const u=URL.createObjectURL(b);
- const x=document.createElement('a');
- x.href=u;x.download='responses.txt';x.click();URL.revokeObjectURL(u);
-}
-
 start();
