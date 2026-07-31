@@ -36,7 +36,6 @@ function gift(){
 app.innerHTML=`<h2>One last surprise... 🎁</h2><p>Tap the gift.</p><div id="g" class="gift">
 <div class="bowL"></div><div class="bowR"></div><div class="lid"></div><div class="box"></div><div class="rv"></div><div class="rh"></div>
 <div class="letter"><h3>💌 Surprise!</h3><p><b>Your gift will be handed over to you by your boyfriend on <span style="color:#e91e63">August 1, 2026 at 7:00 PM ❤️</span></b></p></div></div>`;
-const g=document.getElementById('g');
 g.onclick=()=>{g.classList.add('open');setTimeout(showSummary,2300);for(let i=0;i<120;i++){let e=document.createElement('div');e.textContent=Math.random()>.5?'❤️':'🎉';e.style.position='fixed';e.style.left='50vw';e.style.top='60vh';e.style.transition='2s';document.body.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(${(Math.random()-.5)*600}px,${-Math.random()*500}px)`;e.style.opacity=0});setTimeout(()=>e.remove(),2100);}}
 }
 
